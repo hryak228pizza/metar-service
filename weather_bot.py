@@ -5,7 +5,7 @@ from telegram.ext import Application, CommandHandler, ContextTypes
 # Введите ваш токен бота
 TELEGRAM_TOKEN = '6417609698:AAG7Ry7gJlYbWN7U0RZFVsiPbyajhLQgY4k'
 # FLASK_API_URL = 'http://127.0.0.1:5000/weather/json/'  # Адрес вашего Flask API
-FLASK_API_URL = 'http://metar-service-production.up.railway.app:8080/weather/json/'
+FLASK_API_URL = 'http://metar-service-production-e57b.up.railway.app:8080/weather/json/'
 
 async def get_weather(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     # Проверяем, указан ли код аэропорта
