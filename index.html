@@ -55,6 +55,8 @@
     
     <div id="weather"></div>
         <script>
+            const baseURL = 'metar-service.railway.internal';
+
             const form = document.getElementById('weatherForm');
             // const weatherDiv = document.getElementById('weather');
 
@@ -70,6 +72,8 @@
             async function fetchWeatherData(airportCode) {
     try {
         const response = await fetch(`http://127.0.0.1:5000/weather/json/${airportCode.toUpperCase()}`);
+        // const response = await fetch(`http://192.168.1.40:5000/weather/json/${airportCode.toUpperCase()}`);
+
         if (response.ok) {
             const data = await response.json();
 
