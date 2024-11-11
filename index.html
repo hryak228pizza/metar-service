@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>metar</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styleWeather.css">
+</head>
+<body>
+
+    <header>
+        <div id="utcClock"></div>
+    </header>
+
+    <main>
+
+        <div class="weatherContainer">
+            <div class="weatherForm" >
+                        <form id="weatherForm">
+                            <p id="eac">Enter airport code:</p>
+                            <br>
+                            <div class="fieldDiv">
+                                <p><input class="field" type = "text" id="airportCode" name="airportCode" required/></p>
+                                <!-- <p><input type = "submit" value = "submit"/></p> -->
+                                <p><button class="btn" type="submit">Get Weather</button></p>
+                            </div>                
+                        </form>
+                    </div>
+
+                    <div class="popularAirports">
+                        <p>Use popular Airports:</p>
+                        <div class="buttons">
+                            <button class="airportBtn" data-code="UUEE">UUEE</button>
+                            <button class="airportBtn" data-code="ULLI">ULLI</button>
+                            <button class="airportBtn" data-code="UUDD">UUDD</button>
+                            <button class="airportBtn" data-code="UUWW">UUWW</button>
+                            <button class="airportBtn" data-code="URSS">URSS</button>
+                            <button class="airportBtn" data-code="UNNT">UNNT</button>
+                        </div>                        
+                    </div>
+        </div>
+        
+<br>
+    <div id="airportInfo"></div>
+        <div class="weatherData" id="weatherData">
+            
+            <div class="metar" id="metar">
+
+            </div>
+            <div class="taf" id="taf">
+
+            </div>
+        </div>
+    
+    <div id="weather"></div>
+        <script>
+            const form = document.getElementById('weatherForm');
+            // const weatherDiv = document.getElementById('weather');
+
+            const metar = document.getElementById('metar');
+            const taf = document.getElementById('taf');
+            const airportInfo = document.getElementById('airportInfo');
+
+            const weatherData = document.getElementById('weatherData');
+
+            const temp = document.getElementById('temp');
+            
+    
+            async function fetchWeatherData(airportCode) {
+    try {
+        const response = await fetch(`http://127.0.0.1:5000/weather/json/${airportCode.toUpperCase()}`);
+        if (response.ok) {
+            const data = await response.json();
+
+            // Форматирование данных METAR и TAF
+            const metarFormatted = data.metar.replace(/\n/g, '<br>');
+            const tafFormatted = data.taf
+                .replace(/\n/g, '<br>')
+                .replace(/(TEMPO|BECMG)/g, '&nbsp;&nbsp;&nbsp;&nbsp;$1');
+
+            // Обновление интерфейса
+            airportInfo.innerHTML = `Airport: ${data.name} (${data.icao})`;
+            metar.innerHTML = `<p><strong>METAR:</strong></p><p>${metarFormatted}</p>`;
+            taf.innerHTML = `<p><strong>TAF:</strong></p><p>${tafFormatted}</p>`;
+        } else {
+            throw new Error('Could not fetch weather data');
+        }
+    } catch (error) {
+        airportInfo.innerHTML = `<p>Error: ${error.message}</p>`;
+        metar.innerHTML = ``;
+        taf.innerHTML = ``;
+    }
+}
+
+// Обработчик события формы
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const airportCode = document.getElementById('airportCode').value;
+    fetchWeatherData(airportCode);
+});
+
+// Обработчики событий для кнопок популярных аэропортов
+document.querySelectorAll('.airportBtn').forEach(button => {
+    button.addEventListener('click', () => {
+        const airportCode = button.getAttribute('data-code');
+        fetchWeatherData(airportCode);
+    });
+});
+
+
+
+            function updateClock() {
+                const now = new Date();
+                const utcTime = now.toUTCString().slice(17, 25); 
+                document.getElementById('utcClock').innerText = `UTC: ${utcTime}`;
+            }
+
+            setInterval(updateClock, 100);
+            updateClock();
+        </script>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Ильин Павел</p>
+    </footer>
+
+
+
+</body>
+</html>

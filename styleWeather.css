@@ -1,0 +1,153 @@
+.weatherForm{
+    background-color: #7a7a7a;
+    color: #f0f0f0;
+    width: 40%;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* padding: 20px; */
+    padding: 1.04vw;
+    margin-top: 2%;
+    margin-left: 20%;
+    /* font-size: 22px; */
+    font-size: 1.15vw;
+    display: flex;
+}
+
+.field{
+    /* width: 250px;
+    height: 50px; */
+    width: 13vw;
+    height: 2.6vw;
+    /* font-size: 24px; */
+    font-size: 1.25vw;
+    /* padding-left: 0.5vw; */
+    display: flex;
+}
+
+.fieldDiv{
+    display: flex;
+    /* margin: 10px; */
+    margin: 0.52vw;
+    margin-top: -0.52vw;
+    /* border-spacing: 10px; */
+}
+
+#eac {
+    width: 13vw;
+    margin-left: 0.52vw;
+}
+
+.btn{
+    /* height: 50px;
+    width: 100px; */
+    height: 2.60vw;
+    width: 5.21vw;
+    /* font-size: 14px; */
+    font-size: 0.73vw;
+    /* margin-left: 20px; */
+    margin-left: 1.04vw;
+    cursor: pointer;
+}
+
+
+.weatherData{
+    /* padding: 20px; */
+    /* padding: 1.04vw; */
+    margin-top: 2%;
+    margin-left: 20%;
+    /* font-size: 14px; */
+    font-size: 0.73vw;
+
+    flex-direction: row;
+    display: flex;
+
+}
+
+.weatherContainer {
+    display: flex;
+    gap: 20px; /* Отступ между формой и кнопками */
+    align-items: center;
+    /* padding: 10px; */
+}
+
+.popularAirports {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+    gap: 10px;
+}
+
+.buttons{
+    max-width: 20.833vw;
+}
+
+.airportBtn {
+    padding: 5px 10px;
+    margin-bottom: 5px;
+    font-size: 0.73vw;
+    cursor: pointer;
+    background-color: #7a7a7a;
+    color: white;
+    border: none;
+}
+
+.airportButtons {
+    display: flex;
+    gap: 10px; 
+}
+
+#airportInfo{
+    /* font-size: 24px; */
+    font-size: 1.25vw;
+    font-weight: bold;
+    margin-left: 20%;
+    display: flex;
+}
+
+.metar{
+    display: block;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.taf{
+    display: block;
+    text-align: left;
+    align-items: flex-start;
+    margin-left: 1.25vw;;
+}
+
+/* Блоки с заданиями */
+.assignmentsWeather {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+.assignmentWeather-block {
+    width: 400px;
+    height: 200px;
+    margin: 20px;
+    background-color: #7a7a7a;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.assignmentWeather-content h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+#utcClock {
+    color: #7a7a7a;
+    /* font-size: 16px; */
+    font-size: 0.83vw;
+    margin-left: 20%;
+}
